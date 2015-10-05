@@ -1,6 +1,6 @@
 # @name                twkorean-ruby
 # @author              JunSangPil
-# @version             0.0.2
+# @version             0.0.3
 # @url                 https://github.com/jun85664396/twkorean-ruby
 # @license             Apache License 2.0
 module Twkorean
@@ -41,6 +41,10 @@ module Twkorean
       phrases = self.korean_processor.extractPhrases(text)
       return [] unless phrases
       phrases.toArray.map{|x| x.toString}
+    end
+
+    def parser(text)
+      text.match(/(.*)\(([a-zA-Z]*): ([0-9]+), ([0-9]+)\)/).to_a
     end
 
   end
