@@ -1,6 +1,6 @@
 # @name                twkorean-ruby
 # @author              JunSangPil
-# @version             0.0.3
+# @version             0.0.4
 # @url                 https://github.com/jun85664396/twkorean-ruby
 # @license             Apache License 2.0
 module Twkorean
@@ -11,14 +11,7 @@ module Twkorean
     def initialize(normalization = true, stemming = true)
       jars = Dir.glob(File.dirname(__FILE__)+"/../jars/*.jar").join(':')
       Rjb::load(jars, ['-Xmx512M'])
-      korean_processor = Rjb::import('com.twitter.penguin.korean.TwitterKoreanProcessorJava$Builder').new
-      unless normalization
-        korean_processor.disableNormalizer
-      end
-      unless stemming
-        korean_processor.disableStemmer
-      end
-        self.korean_processor = korean_processor.build
+      self.korean_processor = Rjb::import('com.twitter.penguin.korean.TwitterKoreanProcessorJava')
     end
 
     def normalize(text)
@@ -27,19 +20,26 @@ module Twkorean
 
     def tokenize(text)
       tokens = self.korean_processor.tokenize(text)
-      return [] unless tokens
+      tokens
+    end
+
+    def tokens_to_string_list(tokens)
+      tokens = self.korean_processor.tokensToJavaStringList(tokens)
       tokens.toArray.map{|x| x.toString}
     end
 
-    def tokenize_to_strings(text)
-      tokens = self.korean_processor.tokenizeToStrings(text)
-      return [] unless tokens
-      tokens.toArray.map{|x| x.toString}
+    def tokens_to_token_list(tokens)
+      tokens = self.korean_processor.tokensToJavaKoreanTokenList(tokens)
+      tokens.toArray.map{|x| self.parser(x.toString)}
     end
 
-    def extract_phrases(text)
-      phrases = self.korean_processor.extractPhrases(text)
-      return [] unless phrases
+    def stem(tokens)
+      stemmed = self.korean_processor.stem(tokens)
+      stemmed
+    end
+
+    def extract_phrases(tokens)
+      phrases = self.korean_processor.extractPhrases(tokens, true, true)
       phrases.toArray.map{|x| x.toString}
     end
 
