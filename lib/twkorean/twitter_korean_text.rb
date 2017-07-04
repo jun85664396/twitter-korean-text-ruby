@@ -9,7 +9,7 @@ module Twkorean
     attr_accessor :korean_processor
 
     def initialize(normalization = true, stemming = true)
-      jars = Dir.glob(File.dirname(__FILE__)+"/../jars/*.jar").join(':')
+      jars = Dir.glob(File.dirname(__FILE__)+"/../jars/*.jar").join(File::PATH_SEPARATOR)
       Rjb::load(jars, ['-Xmx512M'])
       self.korean_processor = Rjb::import('com.twitter.penguin.korean.TwitterKoreanProcessorJava')
     end
