@@ -21,7 +21,6 @@ Or install it yourself as:
 ## Required
 
     $ export JAVA_HOME={Your Path}
-    $ gem install 'rjb'
 
 ## Test
     
