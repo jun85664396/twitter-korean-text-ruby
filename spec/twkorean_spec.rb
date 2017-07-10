@@ -12,44 +12,20 @@ RSpec.describe Twkorean do
   context "Tokenize" do
     it "should split a sentence to list of strings " do
       expect(twkorean.tokens_to_string_list(tokens)).to eq(
-        ["한국어", "를", "처리", "하는", "예시", "입니", "다", "ㅋㅋ", "#한국어"]
+        ["한국어", "를", "처리", "하는", "예시", "입니다", "ㅋㅋㅋ", "#한국어"]
       )
     end
 
     it "should split a sentence to list of tokens" do
       expect(twkorean.tokens_to_token_list(tokens)).to eq([
-        ["한국어(Noun: 0, 3)", "한국어", "Noun", "0", "3"],
-        ["를(Josa: 3, 1)", "를", "Josa", "3", "1"],
-        ["처리(Noun: 5, 2)", "처리", "Noun", "5", "2"],
-        ["하는(Verb: 7, 2)", "하는", "Verb", "7", "2"],
-        ["예시(Noun: 10, 2)", "예시", "Noun", "10", "2"],
-        ["입니(Adjective: 12, 2)", "입니", "Adjective", "12", "2"],
-        ["다(Eomi: 14, 1)", "다", "Eomi", "14", "1"],
-        ["ㅋㅋ(KoreanParticle: 15, 2)", "ㅋㅋ", "KoreanParticle", "15", "2"],
-        ["#한국어(Hashtag: 18, 4)", "#한국어", "Hashtag", "18", "4"]
-      ])
-    end
-  end
-
-  context "Stemming" do
-    let(:stem) { twkorean.stem(tokens) }
-
-    it "should split a sentence to list of strings stemmed" do
-      expect(twkorean.tokens_to_string_list(stem)).to eq(
-        ["한국어", "를", "처리", "하다", "예시", "이다", "ㅋㅋ", "#한국어"]
-      )
-    end
-
-    it "should split a sentence to list of tokens stemmed" do
-      expect(twkorean.tokens_to_token_list(stem)).to eq([
-        ["한국어(Noun: 0, 3)", "한국어", "Noun", "0", "3"],
-        ["를(Josa: 3, 1)", "를", "Josa", "3", "1"],
-        ["처리(Noun: 5, 2)", "처리", "Noun", "5", "2"],
-        ["하다(Verb: 7, 2)", "하다", "Verb", "7", "2"],
-        ["예시(Noun: 10, 2)", "예시", "Noun", "10", "2"],
-        ["이다(Adjective: 12, 3)", "이다", "Adjective", "12", "3"],
-        ["ㅋㅋ(KoreanParticle: 15, 2)", "ㅋㅋ", "KoreanParticle", "15", "2"],
-        ["#한국어(Hashtag: 18, 4)", "#한국어", "Hashtag", "18", "4"]
+        ["한국어(Noun: 0, 3)", "한국어", "Noun", nil, "0", "3"],
+        ["를(Josa: 3, 1)", "를", "Josa", nil, "3", "1"],
+        ["처리(Noun: 5, 2)", "처리", "Noun", nil, "5", "2"],
+        ["하는(Verb(하다): 7, 2)", "하는", "Verb", "(하다)", "7", "2"],
+        ["예시(Noun: 10, 2)", "예시", "Noun", nil, "10", "2"],
+        ["입니다(Adjective(이다): 12, 3)", "입니다", "Adjective", "(이다)", "12", "3"],
+        ["ㅋㅋㅋ(KoreanParticle: 15, 3)", "ㅋㅋㅋ", "KoreanParticle", nil, "15", "3"],
+        ["#한국어(Hashtag: 19, 4)", "#한국어", "Hashtag", nil, "19", "4"]
       ])
     end
   end
@@ -62,7 +38,7 @@ RSpec.describe Twkorean do
           "처리(Noun: 5, 2)",
           "처리하는 예시(Noun: 5, 7)",
           "예시(Noun: 10, 2)",
-          "#한국어(Hashtag: 18, 4)"
+          "#한국어(Hashtag: 19, 4)"
         ]
       )
     end
