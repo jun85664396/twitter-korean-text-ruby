@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Test
     
-    $ ruby -v test/twkorean.rb
+    $ rake or rspec
 
 ## Usage
 
@@ -58,7 +58,7 @@ Or install it yourself as:
       end
     end
 
-end## Contributing
+## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/twkorean/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
