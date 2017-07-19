@@ -25,6 +25,12 @@ module Twkorean
       tokens.toArray.map{|x| parser(x.toString)}
     end
 
+    def stem(tokens)
+      # Deprecated method
+      # For legacy Code, Version less 0.0.6
+      tokens_to_token_list(tokens)
+    end
+
     def extract_phrases(tokens)
       phrases = korean_processor.extractPhrases(tokens, true, true)
       phrases.toArray.map{|x| x.toString}
