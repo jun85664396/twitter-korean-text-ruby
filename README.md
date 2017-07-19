@@ -10,6 +10,10 @@ Add this line to your application's Gemfile:
 
     gem 'twkorean'
 
+If you are using Java 7
+
+    gem 'twkorean', "~> 0.0.5"
+
 And then execute:
 
     $ bundle
@@ -19,6 +23,8 @@ Or install it yourself as:
     $ gem install twkorean
 
 ## Required
+
+Twkorean supports java8+
 
     $ export JAVA_HOME={Your Path}
 
