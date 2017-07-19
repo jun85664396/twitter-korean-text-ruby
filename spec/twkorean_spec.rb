@@ -1,9 +1,3 @@
-# @name                twkorean-ruby
-# @author              JunSangPil
-# @version             0.0.4
-# @url                 https://github.com/jun85664396/twkorean-ruby
-# @license             Apache License 2.0
-
 RSpec.describe Twkorean do
   let(:twkorean) { Twkorean::TwitterKoreanText.new }
   let(:text) { twkorean.normalize("한국어를 처리하는 예시입니닼ㅋㅋㅋㅋㅋ #한국어") }
