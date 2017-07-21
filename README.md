@@ -1,5 +1,6 @@
 # Twkorean
-
+[![Build Status](https://travis-ci.org/jun85664396/twitter-korean-text-ruby.svg?branch=master)](https://travis-ci.org/jun85664396/twitter-korean-text-ruby)
+[![Gem Version](https://badge.fury.io/rb/twkorean.svg)](https://badge.fury.io/rb/twkorean)
 ## Compatibility
 
 Currently wraps [open-korean-text 2.0.5](https://github.com/open-korean-text/open-korean-text/releases/tag/open-korean-text-2.0.5) / 현재 이 프로젝트는 [open-korean-text 2.0.5](https://github.com/open-korean-text/open-korean-text/releases/tag/open-korean-text-2.0.5)을 사용중입니다.
